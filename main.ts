@@ -1,35 +1,7 @@
 namespace SpriteKind {
     export const Object = SpriteKind.create()
 }
-function score () {
-    info.changeScoreBy(1)
-}
-function raindrop () {
-    rain = sprites.createProjectileFromSprite(img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . 9 . . . . . . . . 
-. . . . . . 9 9 9 . . . . . . . 
-. . . . . . 9 9 9 9 . . . . . . 
-. . . . . 9 9 9 9 9 9 . . . . . 
-. . . . . 9 9 9 9 9 9 9 . . . . 
-. . . . 9 9 9 9 9 9 9 9 . . . . 
-. . . . 9 9 9 9 9 9 1 9 . . . . 
-. . . . 9 9 9 9 9 1 1 9 . . . . 
-. . . . 9 9 9 9 1 1 9 9 . . . . 
-. . . . . 9 9 9 9 9 9 . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-`, cloud2, 50, 0)
-    rain.x += 2
-    rain.y += Math.randomRange(50, 50)
-}
-function ball () {
-	
-}
-function hero3 () {
+function hero2 () {
     hero = sprites.create(img`
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
@@ -88,6 +60,9 @@ b 1 1 f f f 1 1 1 f f f 1 1 b .
 `, -35, 0)
     cloud2.setPosition(134, 27)
 }
+function score () {
+    info.changeScoreBy(1)
+}
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     projectile = sprites.createProjectileFromSprite(img`
 . . . . . . . . . . . . . . . . 
@@ -111,10 +86,35 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Projectile, function (sprite, otherSprite) {
     game.over(true)
 })
-let projectile: Sprite = null
-let hero: Sprite = null
-let cloud2: Sprite = null
+function raindrop () {
+    rain = sprites.createProjectileFromSprite(img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . 9 . . . . . . . . 
+. . . . . . 9 9 9 . . . . . . . 
+. . . . . . 9 9 9 9 . . . . . . 
+. . . . . 9 9 9 9 9 9 . . . . . 
+. . . . . 9 9 9 9 9 9 9 . . . . 
+. . . . 9 9 9 9 9 9 9 9 . . . . 
+. . . . 9 9 9 9 9 9 1 9 . . . . 
+. . . . 9 9 9 9 9 1 1 9 . . . . 
+. . . . 9 9 9 9 1 1 9 9 . . . . 
+. . . . . 9 9 9 9 9 9 . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`, cloud2, 50, 0)
+    rain.x += 2
+    rain.y += Math.randomRange(50, 50)
+}
+function ball () {
+	
+}
 let rain: Sprite = null
+let projectile: Sprite = null
+let cloud2: Sprite = null
+let hero: Sprite = null
 hero3()
 raindrop()
 cloud()
