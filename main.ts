@@ -1,44 +1,6 @@
 namespace SpriteKind {
     export const Object = SpriteKind.create()
 }
-function hero2 () {
-    hero = sprites.create(img`
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . f f f f f f f . . . . . . . . . . . . . 
-. . . . . . . . . . . f f f f f f f f f . . . . . . . . . . . . 
-. . . . . . . . . . f f f f f f f f f f f . . . . . . . . . . . 
-. . . . . . . . . . f e e e e e e e e e f . . . . . . . . . . . 
-. . . . . . . . . . f e e 1 f e e 1 f e f . . . . . . . . . . . 
-. . . . . . . . . . f e e e e e e e e e f . . . . . . . . . . . 
-. . . . . . . . . . f e e e e e f e e e f . . . . . . . . . . . 
-. . . . . . . . . . f e e e e e e f e e f . . . . . . . . . . . 
-. . . . . . . . . . . f e e e e e e f f . . . . . . . . . . . . 
-. . . . . . . . . . . f e e e e e f f f . . . . . . . . . . . . 
-. . . . . . . . . . . . e e e e e . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . 1 1 1 1 1 . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . 1 1 1 1 1 . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . 1 1 1 1 1 . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . 1 1 e 1 1 . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . 1 1 e 1 1 . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . 1 1 e 1 1 . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . 1 1 1 1 1 . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . 8 8 8 8 8 . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . 8 8 8 8 8 . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . 8 8 8 8 8 . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . 8 8 8 8 8 . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . 8 8 8 8 8 . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . 1 1 1 1 1 . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . 1 1 1 1 1 . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-`, SpriteKind.Player)
-    hero.setPosition(126, 89)
-    controller.moveSprite(hero, 100, 0)
-}
 function cloud () {
     cloud2 = sprites.createProjectileFromSide(img`
 . . . b b b b b b b b b b . . . 
@@ -84,7 +46,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 `, hero, 0, -50)
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Projectile, function (sprite, otherSprite) {
-    game.over(true)
+    game.over(false)
 })
 function raindrop () {
     rain = sprites.createProjectileFromSprite(img`
@@ -104,19 +66,59 @@ function raindrop () {
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
-`, cloud2, 50, 0)
-    rain.x += 2
-    rain.y += Math.randomRange(50, 50)
+`, cloud2, 50, 100)
+    rain.y += 5
+    rain.x += Math.randomRange(5, 30)
+}
+function hero3 () {
+    hero = sprites.create(img`
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . f f f f f f f . . . . . . . . . . . . . 
+. . . . . . . . . . . f f f f f f f f f . . . . . . . . . . . . 
+. . . . . . . . . . f f f f f f f f f f f . . . . . . . . . . . 
+. . . . . . . . . . f e e e e e e e e e f . . . . . . . . . . . 
+. . . . . . . . . . f e e 1 f e e 1 f e f . . . . . . . . . . . 
+. . . . . . . . . . f e e e e e e e e e f . . . . . . . . . . . 
+. . . . . . . . . . f e e e e e f e e e f . . . . . . . . . . . 
+. . . . . . . . . . f e e e e e e f e e f . . . . . . . . . . . 
+. . . . . . . . . . . f e e e e e e f f . . . . . . . . . . . . 
+. . . . . . . . . . . f e e e e e f f f . . . . . . . . . . . . 
+. . . . . . . . . . . . e e e e e . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . 1 1 1 1 1 . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . 1 1 1 1 1 . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . 1 1 1 1 1 . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . 1 1 e 1 1 . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . 1 1 e 1 1 . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . 1 1 e 1 1 . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . 1 1 1 1 1 . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . 8 8 8 8 8 . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . 8 8 8 8 8 . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . 8 8 8 8 8 . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . 8 8 8 8 8 . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . 8 8 8 8 8 . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . 1 1 1 1 1 . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . 1 1 1 1 1 . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+`, SpriteKind.Player)
+    hero.setPosition(126, 89)
+    controller.moveSprite(hero, 100, 0)
 }
 function ball () {
 	
 }
 let rain: Sprite = null
+let hero: Sprite = null
 let projectile: Sprite = null
 let cloud2: Sprite = null
-let hero: Sprite = null
 hero3()
-raindrop()
-cloud()
-ball()
 score()
+ball()
+game.onUpdateInterval(500, function () {
+    cloud()
+    raindrop()
+})
